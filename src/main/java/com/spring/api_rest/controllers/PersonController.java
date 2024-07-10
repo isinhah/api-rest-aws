@@ -2,6 +2,7 @@ package com.spring.api_rest.controllers;
 
 import com.spring.api_rest.services.PersonServices;
 import com.spring.api_rest.vo.v1.PersonVO;
+import com.spring.api_rest.vo.v2.PersonVOV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,13 @@ public class PersonController {
     public PersonVO create(@RequestBody PersonVO person) {
         return service.create(person);
     }
+
+    @PostMapping(value = "/v2", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
+        return service.createV2(person);
+    }
+
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
