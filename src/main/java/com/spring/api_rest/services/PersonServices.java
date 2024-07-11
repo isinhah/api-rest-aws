@@ -2,7 +2,7 @@ package com.spring.api_rest.services;
 
 import com.spring.api_rest.controllers.PersonController;
 import com.spring.api_rest.exceptions.ResourceNotFoundException;
-import com.spring.api_rest.mapper.Mapper;
+import com.spring.api_rest.mapper.DozerMapper;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import com.spring.api_rest.mapper.custom.PersonMapper;
@@ -31,7 +31,7 @@ public class PersonServices {
 
         logger.info("Finding all people!");
 
-        var persons = Mapper.parseListObjects(repository.findAll(), PersonVO.class);
+        var persons = DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
         persons
                 .stream()
                 .forEach(p -> p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel()));
@@ -44,7 +44,7 @@ public class PersonServices {
 
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        var vo = Mapper.parseObject(entity, PersonVO.class);
+        var vo = DozerMapper.parseObject(entity, PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
         return vo;
     }
@@ -52,8 +52,8 @@ public class PersonServices {
     public PersonVO create(PersonVO person) {
 
         logger.info("Creating one person!");
-        var entity = Mapper.parseObject(person, Person.class);
-        var vo =  Mapper.parseObject(repository.save(entity), PersonVO.class);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
     }
@@ -78,7 +78,7 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        var vo =  Mapper.parseObject(repository.save(entity), PersonVO.class);
+        var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
     }
