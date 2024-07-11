@@ -1,15 +1,21 @@
 package com.spring.api_rest.vo.v2;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class PersonVOV2 implements Serializable {
+@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender", "birthDay"})
+public class PersonVOV2 extends RepresentationModel<PersonVOV2> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @JsonProperty("id")
+    private Long key;
 
     private String firstName;
     private String lastName;
@@ -19,12 +25,12 @@ public class PersonVOV2 implements Serializable {
 
     public PersonVOV2() {}
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getFirstName() {
@@ -71,12 +77,13 @@ public class PersonVOV2 implements Serializable {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
         PersonVOV2 that = (PersonVOV2) object;
-        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(gender, that.gender) && Objects.equals(birthDay, that.birthDay);
+        return Objects.equals(key, that.key) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(gender, that.gender) && Objects.equals(birthDay, that.birthDay);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, address, gender, birthDay);
+        return Objects.hash(super.hashCode(), key, firstName, lastName, address, gender, birthDay);
     }
 }
