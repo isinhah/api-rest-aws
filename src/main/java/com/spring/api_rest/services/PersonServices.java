@@ -1,6 +1,7 @@
 package com.spring.api_rest.services;
 
 import com.spring.api_rest.controllers.PersonController;
+import com.spring.api_rest.exceptions.RequiredObjectIsNullException;
 import com.spring.api_rest.exceptions.ResourceNotFoundException;
 import com.spring.api_rest.mapper.DozerMapper;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -50,6 +51,7 @@ public class PersonServices {
     }
 
     public PersonVO create(PersonVO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
 
         logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
@@ -59,6 +61,8 @@ public class PersonServices {
     }
 
     public PersonVOV2 createV2(PersonVOV2 person) {
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating one person with V2!");
         var entity = mapper.convertVoToEntity(person);
         var vo = mapper.convertEntityToVo(repository.save(entity));
@@ -67,6 +71,7 @@ public class PersonServices {
     }
 
     public PersonVO update(PersonVO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
 
         logger.info("Updating one person!");
 
