@@ -1,0 +1,17 @@
+insert into person (first_name, last_name, enabled, gender, address) values
+		('Nicky', 'Kirkhouse', b'1', 'Female', '668 Pennsylvania Court'),
+		('Mort', 'Easson', b'0', 'Male', '75362 Mesta Alley'),
+		('Raeann', 'Fydoe', b'1', 'Female', '153 Lotheville Alley'),
+		('Nesta', 'Edinborough', b'0', 'Female', '64 Acker Street'),
+		('Cord', 'Lomond', b'0', 'Male', '261 Mosinee Hill'),
+		('Trudey', 'Biffin', b'0', 'Female', '1845 Calypso Parkway'),
+		('Janenna', 'Shepherdson', b'0', 'Female', '85 Becker Junction'),
+		('Udell', 'Sobieski', b'0', 'Male', '01 Red Cloud Hill'),
+		('Ofilia', 'Rooson', b'0', 'Female', '1637 Express Drive'),
+		('Kerby', 'Hunnicutt', b'1', 'Male', '84 Stuart Road'),
+		('Antonin', 'Eisak', b'0', 'Male', '643 Clove Road'),
+		('Edgard', 'Detoc', b'1', 'Male', '5859 Di Loreto Alley'),
+		('Sande', 'Santon', b'0', 'Female', '79318 Schlimgen Crossing'),
+		('Brock', 'Acheson', b'1', 'Male', '3 Del Mar Street'),
+		('Harri', 'Causby', b'0', 'Female', '1 Gale Terrace'),
+		('Fonz', 'Willoughley', b'0', 'Male', '523 Utah Street');
